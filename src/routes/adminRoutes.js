@@ -1,0 +1,10 @@
+import { Router } from "express";
+import { requireAuth } from "../middlewares/auth.js";
+import { createResource, deleteResource, listResource, updateResource } from "../controllers/adminController.js";
+const router = Router();
+router.use(requireAuth);
+router.get("/:resource", listResource);
+router.post("/:resource", createResource);
+router.patch("/:resource/:id", updateResource);
+router.delete("/:resource/:id", deleteResource);
+export default router;
