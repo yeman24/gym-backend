@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: ironhouse-gym-backend
+    runtime: node
+    plan: free
+    region: frankfurt
+    branch: main
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        value: file:./dev.db
+      - key: JWT_SECRET
+        generateValue: true
+      - key: FRONTEND_URL
+        value: https://frontend-yemans-projects-cf78e846.vercel.app
+      - key: GEMINI_MODEL
+        value: gemini-3.5-flash
+      - key: GEMINI_API_KEY
+        sync: false
